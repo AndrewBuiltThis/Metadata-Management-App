@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .row
+    h2
+      | Uh Oh, something went terribly wrong. 
+    p.lead
+      | Well, not terribly wrong per se, but certainly not what you or we wanted.
+      br
+      br
+    p.lead
+      | Specifically, this is the error we saw on our side:
+      | #{title}
+      br 
+      br
+    p.font-weight-light
+      | I would go back to the page you were on and try the workflow again. If it fails again, 
+      strong 
+        | then Houston we have a problem.
+    p.font-weight-light
+      If the issue continues, please report the problem via Cherwell.
+

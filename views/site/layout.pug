@@ -1,0 +1,67 @@
+doctype html
+html(lang='en')
+  head
+    title #{title}
+    block meta
+      meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+      meta(name='viewport', content='width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui')
+      meta(name='description', content='Welcome to CLT Data Hub. This application serves as the Enterprise Metadata solution for the City of Charlotte.')
+      meta(name='keywords', content='data, metadata, data management, data hub, clt, charlotte')
+      meta(name='author', content='Andrew Valenski')
+    block stylesheets
+      link(rel='stylesheet', type='text/css' href='/stylesheets/css/main.css')
+    block scripts
+    body(style="background-image: url(/images/simplebackground.svg);height:100% ;background-position: center; background-repeat: no-repeat;background-size: cover; margin-bottom: 60px;")
+    block navBar
+      .container-fluid.px-0
+        nav#navigationBar.navbar.navbar-expand-lg.navbar-dark.bg-primary
+          a#navigationHome.navbar-brand(class={active: title === 'CLT Data Hub'} href='/')
+            strong Data Hub
+          button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+          #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+              li#navigationCatalog.nav-item
+                a.nav-link(class={active: title === 'Catalog Your Data'} href='/catalog')
+                  | Catalog Data
+              li#navigationExplore.nav-item
+                a.nav-link(class={active: title === 'Explore Our Data'} href='/explore')
+                  | Search for Data
+              li#navigationLearn.nav-item
+                a.nav-link(class={active: title === 'Learning Hub'} href='/learn')
+                  | Learn
+              li#navigationFAQ.nav-item
+                a.nav-link(class={active: title === 'Frequently Asked Questions'} href='/faq')
+                  | FAQ
+            ul.navbar-nav.ml-auto
+              li#navigationProfile.nav-item
+                a.nav-link(class={active: title === 'My Profile'} href='/profile')
+                  | My Profile
+              li#navigationTutorial.nav-item
+                button.btn.btn-danger.ml-4(role='button', onclick='helpTutorial()')
+                  | Help
+    block content
+    block bodyScripts
+    block footer
+     footer(style="margin-top:65px;bottom:0;position:absolute;width:100%;")
+        .container-fluid.bg-primary.py-1
+          .container-fluid
+            .row
+              .col-md-6
+                .row.py-0(style='align-self:center;')
+                  .col-sm-1.hidden-md-down
+                    img.rounded.float-left(src='/images/logo/dhTransparent.png', alt='City of Charlotte Data Hub Logo' title='Data Hub' style='height:50px;width:50px;')
+                  .col-sm-11.text-white
+                    div.d-none.d-md-block
+                      p(style="margin-top:.5rem;")
+                        span.lead
+                          strong
+                            | The Data Hub 
+                          | discover. learn. explore.
+              .col-md-5(style="text-align:right;margin-top:.5rem;")
+                .d-none.d-lg-block
+                  span.lead.text-white
+                    | Delivered by the Decision Analytics Team
+              .col-sm-1.hidden-md-down
+

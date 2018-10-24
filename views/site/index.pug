@@ -1,0 +1,86 @@
+extends layout
+
+block content
+  .container-fluid.px-0.mb-2
+    .jumbotron.p-4
+      .row
+        .col-8
+          h1.display-2 Welcome
+          h3.display-4 to Charlotte's Data Hub!
+          hr.my-4
+          .row.pl-4
+            p.lead
+              | The Charlotte Data-Hub is your one-stop for data in the City of Charlotte.
+              | With dozens of departments, teams, and committees, the City has cultivated an amazing
+              | data footprint. 
+            p.lead 
+              | The Data-Hub allows you to use this wealth of data to make the City a
+              | better place.
+              br
+            p.lead
+          .row.pl-4
+            a.btn.btn-primary.btn-lg.text-light(role='button', onclick='helpTutorial()')
+              | First Time Here? 
+              br
+              | Click here for orientation
+        #particleContainer.col-4
+  .container
+    .row.center-text.mb-5(style="justify-content:center;")
+      h3.display-3.text-center City Data Resources
+      p.lead(style="text-align:center;")
+        | If you are new to data, want to learn about the City's data, or just have some time to kill,
+        | check out these awesome resources and programs that CLT has to offer!
+    .row.center-text.mb-5(style="justify-content:center; text-align:center;")
+      .card-deck.w-100
+        .card.h-100.cardBox
+          .card-header 
+            | The Dataset Census 
+          h5.card-title
+            | The City's Master Data Catalog
+          // Create homeCard class for max height
+          img.card-img-top(src='/images/icons/database.svg', alt='Card image cap', style='max-height:150px;width:100%;')
+          .card-body
+            p.card-text
+              | The City's ongoing effort to catalog its data
+              | is alive and well! Check out the following resources
+              | to get more information on the Dataset Census and
+              | how you can contribute and benefit to it!
+          .card-footer
+            a.btn.btn-primary(href='/explore') Show Me!
+        .card.h-100.cardBox
+          .card-header 
+            | The Open Data Portal 
+          h5.card-title 
+            | The Data Public's Gateway
+          // Create homeCard class for max height
+          img.card-img-top(src='/images/icons/download.svg', alt='Card image cap', style='max-height:150px;')
+          .card-body
+            p.card-text
+              | The City of Charlotte has a public-facing
+              | site where residents and businesses can discover, download
+              | and request data. Get more information using the below links!
+          .card-footer
+            a.btn.btn-primary(href='http://data.charlottenc.gov' target="_blank") Take Me There!
+        .card.h-100.cardBox
+          .card-header 
+            | The Co-Lab 
+          h5.card-title 
+            | Empowering the Data Community
+          // Create homeCard class for max height
+          img.card-img-top(src='/images/icons/team.svg', alt='Card image cap', style='max-height:150px;')             
+          .card-body
+            p.card-text
+              | One of the City's latest initiatives is to better
+              | use its massive data footprint. The CoLab is leading the way
+              | for data sharing, collaboration and insights. Learn about the CoLab below!
+          .card-footer
+            a.btn.btn-primary(href='http://cityspaces/citywide/dataanalytics/DataCoLabTeam/SitePages/Home.aspx' target="_blank") Tell Me More!
+
+block bodyScripts
+  script(src='/javascripts/core/jquery.min.js', type='application/javascript')
+  script(src='/javascripts/core/popper.min.js', type='application/javascript')
+  script(src='/javascripts/core/bootstrap.min.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-main.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-config.js', type='application/javascript')
+  script(src='/javascripts/particle/particle-IO.js', type='application/javascript')
+  script(src='/javascripts/particle/particle-main.js', type='application/javascript')

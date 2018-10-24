@@ -1,0 +1,149 @@
+extends layout
+
+block content
+  .container-fluid.px-0.mb-2
+    .jumbotron.p-4
+      .row
+        .col-8
+          h1.display-2 Learn. Share. Do.
+          hr.my-4
+          .row.pl-4
+            p.lead
+              | The City of Charlotte has some of the smartest people in CLT.
+            p.lead 
+              | Check out some of the courses and materials they have put together
+              | for City employees on data, analysis and more!
+              br
+            p.lead
+          .row.px-4
+            a.btn.btn-primary.btn-lg.text-light.mx-2(role='button', onclick='helpTutorial()')
+              | Interested in Data?
+            a.btn.btn-primary.btn-lg.text-light.mx-2(role='button', onclick='helpTutorial()')
+              | Interested in Metadata?
+            a.btn.btn-primary.btn-lg.text-light.mx-2(role='button', onclick='helpTutorial()')
+              | Interested in Analysis?
+        #particleContainer.col-4
+  .container-fluid
+    .row
+      .col-2.p-2
+        #list-example.list-group.p-2
+          a.list-group-item.list-group-item-action(href='#list-item-1') Data Fundamentals
+          a.list-group-item.list-group-item-action(href='#list-item-2') Metadata Essentials
+          a.list-group-item.list-group-item-action(href='#list-item-3') Databases 101
+          a.list-group-item.list-group-item-action(href='#list-item-4') Intro to Development
+          a.list-group-item.list-group-item-action(href='#list-item-1') Data Governance for Dummies
+          a.list-group-item.list-group-item-action(href='#list-item-2') Basics of Analysis
+          a.list-group-item.list-group-item-action(href='#list-item-3') Value of Data
+          a.list-group-item.list-group-item-action(href='#list-item-4') Sharing Data
+      .col-10
+        h3.display-3.text-center City Data Resources
+        p.lead(style="text-align:center;")
+          | If you are new to data, want to learn about the City's data, or just have some time to kill,
+          | check out these awesome resources and programs that CLT has to offer!
+        .row.center-text.mb-5(style="justify-content:center; text-align:center;")
+          .card-deck
+            .card.h-100
+              .cardBox
+                .card-header 
+                  | Data Essentials
+                h5.card-title 
+                  | Want to become a data-ninja? Start here.
+                // Create homeCard class for max height
+                img.card-img-top(src='/images/icons/database.svg', alt='Card image cap', style='max-height:150px;')
+                .box-content
+                  .inner-content
+                    h3.title Data 101
+                    span.post Ready. Set. Data.
+                    ul.icon
+                      li
+                          i.fa.fa-search
+                      li
+                          i.fa.fa-link
+                .card-body
+                  p.card-text
+                    | Data has become an increasingly important component to 
+                    | our jobs, lives, and careers. But approaching data can be 
+                    | daunting, tedious or boring. Not anymore.
+                    | Learn more about the Data Essentials module below!
+                .card-footer
+                  a.btn.btn-primary(href='/explore') Data, Data, Data!
+            .card.h-100
+              .cardBox
+                .card-header 
+                  | Data Governance 
+                h5.card-title 
+                  | Managing data can be hard, but it doesn't have to be.
+                // Create homeCard class for max height
+                img.card-img-top(src='/images/icons/download.svg', alt='Card image cap', style='max-height:150px;')
+                .box-content
+                  .inner-content
+                    h3.title Data in Action
+                    span.post Work Smarter, Not Harder
+                    ul.icon
+                      li
+                        i.fa.fa-search
+                      li
+                        i.fa.fa-link
+              .card-body
+                p.card-text
+                  | Ever stopped to think about how much data we actually depend on?
+                  | Whether its some database, or captured in a photo, or even stored
+                  | in your noggin -- these data are a resource for the City. Learn how
+                  | to harness, manage and re-discover your data here!
+              .card-footer
+                a.btn.btn-primary(href='http://data.charlottenc.gov') Unleash the Kraken!
+            .card.h-100
+              .cardBox
+                .card-header 
+                  | Data Analysis 
+                h5.card-title 
+                  | Wrangling, Analyzing, Building, Reporting...
+                // Create homeCard class for max height
+                img.card-img-top(src='/images/icons/team.svg', alt='Card image cap', style='max-height:150px;')
+                .box-content
+                  .inner-content
+                    h3.title Analysis
+                    span.post Generate Insights.
+                    ul.icon
+                      li
+                        i.fa.fa-search
+                      li
+                        i.fa.fa-link              
+                .card-body
+                  p.card-text
+                    | So you might know your data now, and you may know how to best manage
+                    | it, too. But can you analyze it? Can you find patterns, outliers, and
+                    | quality concerns? Learn the most useful data analysis tools in the industry
+                    | in this module.
+                .card-footer
+                  a.btn.btn-primary(href='http://cityspaces/citywide/dataanalytics/DataCoLabTeam/SitePages/Home.aspx') Begin the Fun!
+  #comingSoon.modal.fade.text-center(role='dialog' data-backdrop="static" data-keyboard="false")
+    .modal-dialog
+      // Modal content
+      .modal-content(style="justify-content:center;")
+        .modal-header(style="justify-content:center;")
+          h4.modal-title Coming Soon!
+        .modal-body
+          p
+            | I know, this page looks pretty awesome and I'm bummed that it is not fleshed out yet either. 
+          br
+          p
+            | Eventually, this page will allow you to look up information on data, analysis, programming, governance and all kinds of awesome topics.
+          br
+          p
+            | But for now, I need to do some other stuff. Check back every once and again to see this page's status!
+        .modal-footer(style="justify-content:center;")
+            a.btn.btn-danger(href='/', role='button') Take Me Home! [Country Roads]
+			
+block bodyScripts
+  script(src='/javascripts/core/jquery.min.js', type='application/javascript')
+  script(src='/javascripts/core/popper.min.js', type='application/javascript')
+  script(src='/javascripts/core/bootstrap.min.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-main.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-config.js', type='application/javascript')
+  script(src='/javascripts/particle/particle-IO.js', type='application/javascript')
+  script(src='/javascripts/particle/particle-main.js', type='application/javascript')
+  script.
+    $(window).on('load', function(){
+      $('#comingSoon').modal('show');
+    });

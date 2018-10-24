@@ -1,0 +1,185 @@
+extends layout
+
+block content
+  .container.vertical-center
+    .row(style="justify-content:center;")
+      h3.display-4 Frequently Asked Questions
+    .row
+      #accordion(style="max-width:100vh;margin:auto;")
+        .card
+          #headingOne.card-header
+            h5.mb-0
+              button.btn.btn-link(data-toggle='collapse', data-target='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
+                | What is the Data Hub?
+          #collapseOne.collapse.show(aria-labelledby='headingOne', data-parent='#accordion')
+            .card-body
+              h3
+                | Great Question!
+              | The Data Hub is the City of Charlotte's central data destination. Whether you want to discover new datasets, maintain your existing data, or learn all about data, the Data Hub has got you covered.
+              br
+              br
+              | The Data Hub launched in 2018 following the City's adoption of a brand spankin' new Metadata Standard. The Decision Analytics Team within the City's Innovation & Technology Department built this application as a tool to manage Metadata within the City in an organized, accessable and easy interface. The Data Hub has already been extended to provide a one-stop-shop for all things related to City data.
+              br
+              br
+              p.lead
+                | Welcome to the Data Hub.
+              p
+                | We're so happy you're here.
+        .card
+          #headingTwo.card-header
+            h5.mb-0
+              button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+                | Why Does the Data Hub Exist?
+          #collapseTwo.collapse(aria-labelledby='headingTwo', data-parent='#accordion')
+            .card-body
+              h3
+                | Fair Question!
+              | Doesn't it sometimes seem like with every new solution, standard or project another thing gets made? Whether its a new app, a new workflow, a new web site, or a new whoseywhatsit, it can feel like there's just too much.
+              br
+              br
+              p.lead
+                | I'm with you.
+              br
+              | So rather than have a site for data training, data sharing, data maintenance and data programs, I built an app that can serve as your one-stop shop for data. Designing a modern, responsive and data ecosystem for the City seemed to be best path forward to allow intra-governmental coordination and for us to really use our data smarter. So now we have a tool that allows us to
+              br
+              br
+              p.lead
+                | Work smarter, not harder.
+        .card
+          #headingThree.card-header
+            h5.mb-0
+              button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
+                | What Can I do at the Data Hub?
+          #collapseThree.collapse(aria-labelledby='headingThree', data-parent='#accordion')
+            .card-body
+              h3
+                | Fantastic Question!
+              | The Data Hub allows you to do a few simple, important and dead-useful actions. The most important would be the abilities to: add data to the City's Dataset Census, edit your Dataset Census entries, search for datasets that the City maintains and access training on data-related subjects.
+              br
+              br
+              | The Dataset Census is the City's master-resource for our data. The Census was envisioned as a comprehensive resource containing records of all the City's data. Imagine if you could search for all the data the City has... think of the time you could save [and the friends you could make!]. But don't worry, we're not actually copying your data - we're just collecting records of the datasets so we all can know about them!
+              br
+              br
+              p.lead
+                | I'll cover the specifics in the below sections
+        .card
+          #headingFour.card-header
+            h5.mb-0
+              button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseFour', aria-expanded='false', aria-controls='collapseFour')
+                | How Do I Add to the Dataset Census?
+          #collapseFour.collapse(aria-labelledby='headingFour', data-parent='#accordion')
+            .card-body
+              h3
+                | Fantastic-er Question!
+              | Adding to the Dataset Census should be part of your data-generation workflow. Otherwise, you might lose your data, forget what exactly it is or others wont be able to leverage your awesome work and get you the recognition you deserve. So you should get familiar with the workflow!
+              br
+              br
+              p.lead
+                | Also, if your data's not in the Dataset Census, it can't be shared.
+              | So let's find out how to do add data then! All you need to do is click on the 'Catalog Data' button from the top navigation bar. Then you'll be brought to a smart wizard that makes sure you're entering the right stuff. It is recommended you complete all the fields to comply with the Metadata Standard, but only the first two pages are required. More details are provided on that page.
+              br
+              br
+              p.lead
+                | Go Forth and Catalog!
+              p
+                | Reminder, click on the 'Catalog Data' button to do so!
+        .card
+          #headingFive.card-header
+            h5.mb-0
+              button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseFive', aria-expanded='false', aria-controls='collapseFive')
+                | Why should I complete my data's metadata?
+          #collapseFive.collapse(aria-labelledby='headingFive', data-parent='#accordion')
+            .card-body
+              h3
+                | Understandable Question!
+              p.lead
+                | "This sounds like more work for me ... why would I do this...?"
+              | Well that's a depressing outlook, but I get it. Plates can be full, so why would you start cataloging your data? Well there are a few reasons I can think of...
+              br
+              br
+              p.lead
+                | 1. Cataloging your Metadata is required for shared data now
+              | That's right, team! If you want your data to be accessable to others from a database, it needs complete metadata and this is the one-stop for you to do it!
+              br
+              br
+              p.lead
+                | 2. It will save you time
+              | Ever heard the annoying phrase 'It takes money to make money?' Well the same concept is at play here. You'll have to invest some time to catalog your data, but guess what? In six months when your manager asks frantically where that dataset is and you have to comb through your desktop for fourty-minutes looking for the file, you'll wish you had an easy-to-use and maintain system! 
+              br
+              br
+              p.lead
+                | 3. Your work will improve
+              | Deadlines can be a major buzzkill, especially when you need to find (or worse, create) data from scratch that you know must exist somewhere else. I once spent two-days recreating a dataset that someone named very, very poorly. I was not happy. But if there was a way to discover data, I could have spent my time doing the really important things on that project rather than reinventing the wheel!
+              br
+              br
+              p.lead
+                | 4. It will make me happy
+              | Just in case you needed some extra incentive, I will personally be happy if people use this. You probably feel the same way about your work! But when you spend weeks on a project and then find out no one's used it since you finished? You feel sad. So don't make me sad!
+              br
+              br
+              p.lead
+                | Work Happy. Not Sad.
+        .card
+          #headingSix.card-header
+            h5.mb-0
+              button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseSix', aria-expanded='false', aria-controls='collapseSix')
+                | How Can I Use the Data I Found?
+          #collapseSix.collapse(aria-labelledby='headingSix', data-parent='#accordion')
+            .card-body
+              h3
+                | Futuristic Question!
+              | We are actually working with the wonderful Data Services Team in I&T to rollout a database that will actually maintain copies of the datasets folks want to share!
+              br
+              br
+              | Right now, this is still a while away, but in the interim the app has a built-in email composer you should know about. If you go to the 'Search for Data' page using the top-navbar you'll see a page load. Pretty sweet, eh?
+              br
+              p.lead
+                | But wait! There's more!
+              | When the table loads, click on a row and you'll see a pop-out with more information on that dataset. If you click on the Data Steward or Data Owner fields, an email-template will pop-up on your desktop (woohoo!) and allow you to email the folks who currently maintain and manage that data
+              br
+              br
+              p.lead
+                | Start talking to each other!
+        .card
+          #headingSeven.card-header
+            h5.mb-0
+              button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseSeven', aria-expanded='false', aria-controls='collapseSeven')
+                | How Do I Share My Data?
+          #collapseSeven.collapse(aria-labelledby='headingSeven', data-parent='#accordion')
+            .card-body
+              h3
+                | Futuristic Question (part II)!
+              | Right now our shared database is not live yet. I know, bummer. But it'll be up before you know it! Once that database is up and happy, then this site will have that workflow as well!
+              br
+              br
+              p.lead
+                | But before you share your data, it must have completed metadata! So get that done now!
+              p.lead
+                | Then you'll be golden
+        .card
+          #headingEight.card-header
+            h5.mb-0
+              button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseEight', aria-expanded='false', aria-controls='collapseEight')
+                | What Happens when I add to the Dataset Census?
+          #collapseEight.collapse(aria-labelledby='headingEight', data-parent='#accordion')
+            .card-body
+              h3
+                | Smart Question!
+              | When you add to the Dataset Census (cataloging your data), a record is saved in a database that contains the information you submit. 
+              br
+              br
+              p.lead
+                | Adding your data to the Dataset Census does not touch your actual dataset. 
+              | You can think of the Dataset Census as a library's website from the old days before these fandangled elecrtonic books. Stay with here. Back in ye' olden times, a library website didn't provide the ability to actually get the book you found, it just maintained a record of all the books that the library has. You still have your book in your section. We're just taking an inventory(oh, an inventory analogy would have been better...)
+              br
+              br
+              p.lead
+                | One more time for the people in the back: the Dataset Census is just an inventory of City data.
+              p
+                | Phew, that dead-horse is taken care of now
+block bodyScripts
+  script(src='/javascripts/core/jquery.min.js', type='application/javascript')
+  script(src='/javascripts/core/popper.min.js', type='application/javascript')
+  script(src='/javascripts/core/bootstrap.min.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-main.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-faqconfig.js', type='application/javascript')

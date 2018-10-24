@@ -1,0 +1,52 @@
+{
+  "name": "datahub",
+  "version": "1.0.0",
+  "description": "This is the rebuild of the Data Hub for the City of Charlotte.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "data",
+    "metadata",
+    "data",
+    "management",
+    "discoverability",
+    "strategy",
+    "GIS"
+  ],
+  "author": "Andrew Valenski",
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^6.5.4",
+    "autoprefixer": "^9.1.5",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.3",
+    "clean-css-cli": "^4.2.1",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.1",
+    "https": "^1.0.0",
+    "jquery": "^3.3.1",
+    "jshint": "^2.9.6",
+    "msnodesqlv8": "^0.6.8",
+    "mssql": "^4.2.1",
+    "multer": "^1.3.1",
+    "node-sass": "^4.9.3",
+    "node-sspi": "^0.2.3",
+    "nodemailer": "^4.6.8",
+    "npm": "^6.4.1",
+    "path": "^0.12.7",
+    "popper.js": "^1.14.4",
+    "postcss-cli": "^6.0.0",
+    "pug": "^2.0.3",
+    "serve-favicon": "^2.5.0",
+    "stylelint": "^9.5.0"
+  },
+  "bin": {
+    "datahub": "index.js"
+  },
+  "devDependencies": {}
+}

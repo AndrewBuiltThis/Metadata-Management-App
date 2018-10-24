@@ -1,0 +1,217 @@
+extends layout
+
+block content
+  .container-fluid(style="margin-top:25px; max-width:80%; background-image: linear-gradient(to bottom right, rgba(83,39,115,0.25), rgba(83,39,115,0.00));")
+    .row.mx-4.mb-2.mt-2
+      h2.display-4(style="margin:auto;") 
+        | Ready. Set. Explore.
+    .row.mb-3(style='justify-content:center;')
+      p.lead.mx-4 
+        | Search the City's Dataset Census to find your dream data
+  .container-fluid(style="margin-top:25px; padding-top:15px; padding-bottom:15px; max-width:80%;background-image: linear-gradient(to bottom right, rgba(43,43,43,0.25), rgba(43,43,43,0.05));")
+    .row
+      .col-12
+        .row.mb-2
+          .col-3#tableSearch
+          .col-6#holding
+          .col-3#tableButtons
+            .btn-toolbar(role='toolbar', aria-label='Toolbar with button groups')
+              .btn-group.mr-2(role='group', aria-label='Export Group')
+                 button#exportButton.btn.btn-primary.excelexport.btn-md(type='button') Export Data
+              .btn-group.dropright(role='toolbar' aria-label'Toolbar for Filtering')
+                button#showButton.btn.btn-primary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                  | Show More Records
+                .dropdown-menu
+                  button.dropdown-item.btn.btn-primary.btn-md(type='button', data-page-size='10') Show 10 Records
+                  button.dropdown-item.btn.btn-primary.btn-md(type='button', data-page-size='25') Show 25 Records
+                  button.dropdown-item.btn.btn-primary.btn-md(type='button', data-page-size='50') Show 50 Records
+                  button.dropdown-item.btn.btn-primary.btn-md(type='button', data-page-size='100') Show 100 Records
+                  .dropdown-divider
+                  button.dropdown-item.btn.btn-primary.btn-md(type='button', data-page-size='5000') Show All Records
+        table#exploreTable.table.table-striped.table-hover.table-sm(style='background:#FFFFFF;')
+        #detailsModal.modal.fade(tabindex='-1', role='dialog')
+          .modal-dialog.modal-lg(role='document', style="max-width:1400px;")
+            .modal-content
+              .modal-header
+                h5.modal-title Enjoy your deep dive into this dataset!
+              .modal-body
+                .row
+                  .col-3.border-right
+                    p.lead.my-0 Name:
+                    p#datasetName
+                      | {No Info}
+                  .col-3.border-right
+                    p.lead.my-0 Department:
+                      p#datasetDepartment
+                        | {No Info}
+                  .col-6
+                    p.lead.my-0 Summary:
+                    p#datasetSummary
+                      | {No Info}
+                hr.my-1
+                .row
+                  .col-8.border-right
+                    p.lead.my-0 Detailed Description:
+                    p#datasetDescription
+                      | {No Info}
+                  .col-2.border-right
+                    p.lead.my-0 Category:
+                    p#datasetTopic
+                      | {No Info}
+                  .col-2
+                    p.lead.my-0 Tags:
+                    p#datasetTags
+                      | {No Info}
+              .modal-body(style='background-color:aliceblue;')
+                .row
+                  .col-4.border-right
+                    p.lead.my-0 Sharing Level:
+                    p#datasetSharingLevel
+                      | {No Info}
+                  .col-4.border-right
+                    p.lead.my-0 Approved for Sharing:
+                    p#datasetSharingApproval
+                      | {No Info}
+                  .col-4
+                    p.lead.my-0 Metadata Validated:
+                    p#datasetValidated
+                      | {No Info}
+                hr.my-1
+                .row.mt-3
+                  .col-2.border-right
+                    p.lead.my-0 Data Steward:
+                    p#datasetSteward
+                      | {No Info}
+                  .col-2.border-right
+                    p.lead.my-0 Data Owner:
+                    p#datasetOwner
+                      | {No Info}
+                  .col-2.border-right
+                    p.lead.my-0 Data Status:
+                    p#datasetStatus
+                      | {No Info}
+                  .col-2.border-right
+                    p.lead.my-0 Data Type:
+                    p#datasetType
+                      | {No Info}
+                  .col-4
+                    p.lead.my-0 Data Source:
+                    p#datasetSource
+                      | {No Info}
+                hr.my-1
+                .row
+                  .col-6.border-right
+                    p.lead.my-0 Use Constraints:
+                    p#datasetUseConstraints
+                      | {No Info}
+                  .col-6
+                    p.lead.my-0 Security Constraints:
+                    p#datasetSecurity
+                      | {No Info}
+              .card-body
+                .row
+                  .col-12
+                    p.lead.my-0 Additional Info:
+                    p#datasetNotes
+                      | {No Info}
+                hr.my-1
+                .row
+                  .col-3.border-right
+                    p.lead.my-0 Open Data URL:
+                    p#datasetOpenDataURL
+                      | {No Info}
+                  .col-3.border-right
+                    p.lead.my-0 REST Endpoint:
+                    p#datasetRESTEndpoint
+                      | {No Info}
+                  .col-3
+                    p.lead.my-0 Related Documents:
+                    p#datasetRelatedDocs
+                      | {No Info}
+                  .col-3.border-right
+                    p.lead.my-0 Lineage:
+                    p#datasetLineage
+                      | {No Info}
+              .modal-footer
+                button.btn.btn-secondary(type='button', data-dismiss='modal') Let's Blow This Popsicle Stand!
+block bodyScripts
+  script(src='/javascripts/core/jquery.min.js', type='application/javascript')
+  script(src='/javascripts/core/popper.min.js', type='application/javascript')
+  script(src='/javascripts/core/bootstrap.min.js', type='application/javascript')
+  script(src='/javascripts/form/moment-with-locales.min.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-main.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-exploreconfig.js', type='application/javascript')
+  script(src='/javascripts/footable/footable.js', type='application/javascript')
+  script(src='/javascripts/footable/footable.paginate.js', type='application/javascript')
+  script(src='/javascripts/footable/footable.export.js', type='application/javascript')
+  script.
+    jQuery(function($){
+      $('.table').footable({
+        "showToggle" : false,
+        "filtering": {
+          "enabled": true,
+          "placeholder":"Search for datasets",
+          "container": "#tableSearch",
+          "position": "right"
+        },
+        "paging": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        },
+        "columns": [
+          {"name":"idMasterRecord", "title":"ID"}
+          ,{"name":"title", "title":"Title", style: {maxWidth:150, overflow:"hidden", textOverflow:"ellipsis", wordBreak:"keep-all", whiteSpace:"nowrap"}}
+          ,{"name":"tags", "title":"Tags", "breakpoints": "xs sm md", style: {maxWidth:150, overflow:"hidden", textOverflow:"ellipsis", wordBreak:"keep-all", whiteSpace:"nowrap"}}
+          ,{"name":"summary", "title":"Summary",style: {maxWidth:300, overflow:"hidden", textOverflow:"ellipsis", wordBreak:"keep-all", whiteSpace:"nowrap"}}
+          ,{"name":"department", "title":"Department"}
+          ,{"name":"useConstraints", "title":"Use Constraints", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"topic", "title":"Topic", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"datasetType", "title":"Data Type", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"dataSteward", "title":"Data Steward", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"dataStewardEmail", "title":"Data Steward Email", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"dataOwner", "title":"Data Owner", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"dataOwnerEmail", "title":"Data Owner Email", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"publicAccessLevel", "title":"Public Access Level"}
+          ,{"name":"metadataUpdateFrequency", "title":"Metadata Update Frequency", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"dataStatus", "title":"Data Status", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"notes", "title":"Notes", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"updateFrequency", "title":"Update Frequency", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"securityConstraints", "title":"Security Constraints", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"lineage", "title":"Lineage", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"endpoint", "title":"Endpoint", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"downloadURL", "title":"Open Data URL", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"programLink", "title":"Program Link", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"relatedDocument", "title":"Related Documents", "breakpoints": "xs sm md lg xl"}
+          //,{"name":"shareStatus", "title":"Share Status", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"datasetSource", "title":"Data Source", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"metadataValidated", "title":"Metadata Status", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"sharingApproval", "title":"Approval Status", "breakpoints": "xs sm md lg xl"}
+          ,{"name":"description", "title":"Description", "breakpoints": "xs sm md lg xl"}
+          //,{"name":"submitUser", "title":"Submit User", "visible":false}
+          //,{"name":"submittedBy", "title":"Submit By", "visible":false}
+          //,{"name":"submitDate", "title":"Submit On", "visible":false}
+          //,{"name":"updatedBy", "title":"Updated By", "breakpoints": "xs sm md lg xl"}
+          //,{"name":"updateDate", "title":"Updated Date", "formatString":"DD MMM YYYY", "breakpoints": "xs sm md lg xl"}
+        ],
+        "rows": $.get('/api/metadata/datasets/')
+      });
+    });
+	
+  script.
+    $('[data-page-size]').on('click', function(e){
+      e.preventDefault();
+      var newSize = $(this).data('pageSize');
+      FooTable.get('#exploreTable').pageSize(newSize);
+    });
+	  
+  script.
+    $(".excelexport").on("click", function (e) {
+      var csv = FooTable.get('#exploreTable').toCSV(true);
+      var hiddenElement = document.createElement('a');
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = 'DataHubExport.csv';
+      hiddenElement.click();
+    }); 

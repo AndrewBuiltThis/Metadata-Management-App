@@ -1,0 +1,441 @@
+extends layout
+
+block content
+  .app-content.container.content.mt-2
+    .content-wrapper
+      .content-body
+        // Form wizard with step validation section start
+        section#validation
+          .row.mx-3
+            #catalogContainer.col-12
+              .card
+                .card-header(style="text-align:center;")
+                  h4.card-title Let's Catalog Your Data
+                .card-content.collapse.show
+                  .card-body
+                    form#metadataform.steps-validation.wizard-circle(action='../api/metadata/datasets/upload', method='post')
+                      // Step 1
+                      h6 Introductions
+                      fieldset
+                        .row.text-center(style='justify-content:center;')
+                          p.lead
+                            | Let's Get Some Info About This Dataset
+                          p.font-weight-light.d-none.d-lg-block
+                            | By completing this form, you will be adding you dataset to the City's Dataset Census. If you're unsure about a field, click the 'i' icon next to the field. 
+                            br
+                            br
+                            | Complete all the fields with asterisks (*) to comply with the City's Metadata Standard.
+                            | And don't leave this form until you agree to the terms and click the submit button on the last tab! Thank you for all you do for the City!
+                        .row
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetName')
+                                | Dataset Name :
+                                span.danger *
+                              .input-group
+                                input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset name refers to the 'common name' of the dataset that is user-friendly, easy to understand and accurately identifies what the data represents." title="Name")
+                                    i#datasetNameIcon.fa.fa-info(aria-hidden='true')
+                                input#datasetName.form-control.required(type='text', name='datasetName', maxlength='42', placeholder='What is the name of this dataset?')
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetSummary')
+                                | Dataset Summary :
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset summary is a brief description of your data that would allow for someone to understand what the data is, represents and is intended for - similar to an abstract." title="Summary")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetSummary.form-control.required(type='text', name='datasetSummary',  maxlength='150' ,placeholder='Can you describe this dataset briefly?')
+                        .row
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetTags')
+                                | Tags :
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset tags are keywords, buzzwords, categories or other terms that help to classify the data. They are intended to help others find your data, so the more the merrier!" title="Tags")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetTags.form-control.required(type='text', name='datasetTags',  maxlength='150', placeholder='What are some tags / keywords that describe this dataset?')
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetSource')
+                                | Data Source :
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset source refers to where the data currently resides. This can be a database, a shared drive or wherever!" title="Source")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetSource.form-control.required(type='text', name='datasetSource',  maxlength='100',placeholder='What is the source of this dataset?')
+                        .row
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetType')
+                                | Data Type :
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset type refers to the strucure / format of the data. Most data we see is tabular (i.e. is stored in a table)." title="Type")
+                                    i.fa.fa-info(aria-hidden='true')
+                                select#datasetType.custom-select.form-control.required(name='datasetType')
+                                  option(value='') Select the appropriate data type
+                                  option(value='Tabular Data') Tabular Data
+                                  option(value='Unstructured Data') Unstructured Data
+                                  option(value='Images') Images
+                                  option(value='Files') Files
+                                  option(value='Other') Other
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetDepartment')
+                                | Department:
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset department refers to the department who owns this data. Note that you are only authorized to submit data on behalf of your own department!" title="Department")
+                                    i.fa.fa-info(aria-hidden='true')
+                                select#datasetDepartment.custom-select.form-control.required(name='datasetDepartment')
+                                  option(value='') Select your department
+                                  option(value='Aviation') Aviation
+                                  option(value='Charlotte Area Transit System') CATS
+                                  option(value='Charlotte Water') Charlotte Water
+                                  option(value='Charlotte-Mecklenburg Planning') Planning
+                                  option(value="Charlotte-Mecklenburg Police") CMPD
+                                  option(value='City Attorney') City Attorney
+                                  option(value='City Clerk') City Clerk
+                                  option(value='City Manager') City Manager
+                                  option(value='Fire Department') Fire
+                                  option(value='Housing and Neighborhood Services') Housing and Neighborhood
+                                  option(value='Human Resources') Human Resources
+                                  option(value='Innovation and Technology') Innovation and Technology
+                                  option(value='Internal Audit') Internal Audit
+                                  option(value='Management and Financial Services') Management and Financial Services
+                                  option(value='Office of Data and Analytics') Office of Data and Analytics
+                                  option(value='Solid Waste Services') Solid Waste
+                                  option(value='Strategy and Budget') Strategy and Budget
+                                  option(value='Transportation') Transportation
+                      // Step 2
+                      h6 Maintenance
+                      fieldset
+                        .row
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetStewardEmail')
+                                | Data Steward Email :
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset steward's email address is the email address of the individual who is responsible for this dataset and its metadata. Normally, this would be you (the person submitting this)!" title="Steward Email")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetStewardEmail.form-control.required(type='email', name='datasetStewardEmail', maxlength='42', placeholder="What is the data steward's email address?")
+                            .form-group
+                              label.lead(for='datasetOwnerEmail')
+                                | Data Owner Email :
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset owner's email is the email address of the individual responsible for ensuring that this data and its metadata are kept up to date. Normally, this would be your department's CoLab member or data manager." title="Owner Email")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetOwnerEmail.form-control.required(type='email', name='datasetOwnerEmail',  maxlength='42', placeholder="What is the data owner's email address?")
+                            .form-group
+                              label.lead(for='datasetUpdateFrequency')
+                                | Update Frequency :
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset update frequency represents the frequency at which the data in this dataset changes. For instance, if your dataset changed every morning, you would select 'Daily.'" title="Update Frequency")
+                                    i.fa.fa-info(aria-hidden='true')
+                                select#datasetUpdateFrequency.custom-select.form-control.required(name='datasetUpdateFrequency')
+                                  option(value='') How frequently does this data change?
+                                  option(value='Continual (live)') Continuously
+                                  option(value='Daily') Daily
+                                  option(value='Weekly') Weekly
+                                  option(value='Monthly') Monthly
+                                  option(value='Quarterly') Quarterly
+                                  option(value='Biannually') Biannually
+                                  option(value='Annually') Annually
+                                  option(value='Not Planned') Not Planned
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetSteward')
+                                | Data Steward :
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset steward is the individual who will maintain this dataset's metadata and serves as the resident dataset expert for this entry." title="Dataset Steward")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetSteward.form-control.required(type='text', name='datasetSteward',  maxlength='42', placeholder='What is the name of the data steward?')
+                            .form-group
+                              label.lead(for='datasetOwner')
+                                | Data Owner :
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset owner is the individual who will ensure that this dataset and its metadata are maintained." title="Dataset Owner")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetOwner.form-control.required(type='text', name='datasetOwner',  maxlength='42', placeholder='What is the name of thd data owner?')
+                            .form-group
+                              label.lead(for='datasetPointRecords')
+                                | Point-Time Records:
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="Dataset point-records is concerned with whether or not point-in-time snapshots (point-records) are maintained for this dataset." title="Point Records")
+                                    i.fa.fa-info(aria-hidden='true')
+                                select#datasetPointRecords.custom-select.form-control.required(name='datasetPointRecords')
+                                  option(value='') Are there point-time records?
+                                  option(value='Yes') Yes
+                                  option(value='No') No
+                        .row
+                          .col-12
+                            .form-group
+                              label.lead(for='datasetSharing')
+                                | Sharing Classification :
+                                span.danger *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset's sharing clasification refers to the approved level of distribution of this data. In other words, if this data is okay to go public, you'd select 'Open.' If it was not to be shared at all, you would select 'Restricted.' If the data is okay to share internally (i.e. only with the City), you would select 'Internally Shared.'" title="Sharing Classification")
+                                    i.fa.fa-info(aria-hidden='true')
+                                select#datasetSharing.custom-select.form-control.required(name='datasetSharing')
+                                  option(value='') Select the appropriate sharing level
+                                  option(value='Restricted') Restricted
+                                  option(value='Departmental') Departmental
+                                  option(value='Internal') Internal
+                                  option(value='Open') Open
+                      // Step 3
+                      h6 Checkpoint
+                      fieldset
+                        .row.text-center
+                          .col-md-12
+                            h3 Woohoo! Great work thus far!
+                            br
+                            p.lead
+                              | Right now, your dataset is in compliance with the minimum requirements of the City's Dataset Census.
+                              br
+                              br
+                            h4
+                              | But you're not done just yet!
+                              br
+                              br
+                            p.lead
+                              | You'll notice there are a few more tabs. If you want your data to comply with the City's Metadata Standard 
+                              strong
+                                | (which is strongly recommended and required for sharing your data) 
+                              | you will need to complete the remaining sections.
+                              br
+                              br
+                            p.lead
+                              | Your data will not be added to the Dataset Census until you click the 'Submit' Button on the last section, so click 'Next' to continue!
+                      // Step 4
+                      h6 Required Metadata Fields
+                      fieldset
+                        .row
+                          h4
+                            | These fields are required if you want to be in compliance with the metadata standard
+                          .col-md-12
+                            .form-group
+                              label.lead(for='datasetDescription')
+                                | Data Description :
+                                span.warning *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset description is a longer, more thoruough description of your dataset. A complete description should describe the data, its methods, its intention, scope and appropriate usage." title="Description")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetDescription.form-control(type='text', name='datasetDescription',  maxlength='1000', placeholder='Can you provide a detailed summary of this dataset?')
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetStatus')
+                                | Data Status :
+                                span.warning *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset status refers to the current state of this dataset. The data can be 'Under Development' (meaning that its still a work-in-progress), 'Completed' (meaning that this data is currently in production and is considered an accurate source-of-truth) or 'Historical' (meaning that this data isn't maintained, but represents a historical snapshot)." title="Status")
+                                    i.fa.fa-info(aria-hidden='true')
+                                select#datasetStatus.custom-select.form-control(name='datasetStatus')
+                                  option(value='Completed') What is the status of this data?
+                                  option(value='Under Development') Under Development
+                                  option(value='Completed') Completed
+                                  option(value='Historical') Historical
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetCreationDate')
+                                | Creation Date :
+                                span.warning *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset creation date refers to the date that this dataset was originally created." title="Creation Date")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetCreationDate.form-control(type='date', placeholder='When was this dataset first created?')
+                        .row
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetTopic')
+                                | Data Topic :
+                                span.warning *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset topic is used to divide our data in some useful buckets. The topics in the dropdown are how the City organizes its Open Data Portal and are used across the organization." title="Topic")
+                                    i.fa.fa-info(aria-hidden='true')
+                                select#datasetTopic.custom-select.form-control(name='datasetTopic')
+                                  option(value='City Infrastructure') Which category most appropriately categorizes this dataset?
+                                  option(value='City Infrastructure') City Infrastructure
+                                  option(value='City Management and Ethics') City Management and Ethics
+                                  option(value='City Projects') City Projects
+                                  option(value='Culture and Recreation') Culture and Recreation
+                                  option(value='Economy and Community') Economy and Community
+                                  option(value='Energy and the Environment') Energy and the Environment
+                                  option(value='Financial Information') Financial Information
+                                  option(value='Geographic Locations and Boundaries') Geographic Locations and Boundaries
+                                  option(value='Health and Social Services') Health and Social Services
+                                  option(value='Housing and Buildings') Housing and Buildings
+                                  option(value='Public Safety') Public Safety
+                                  option(value='Transportation') Transportation
+                          .col-md-6
+                            .form-group
+                              label.lead(for='datasetMetadataUpdate')
+                                | Metadata Update Frequency :
+                                span.warning *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The metadata update frequency refers to how often (at a maximum) that this dataset's metadata will be updated. The longest interval is annually." title="Metadata Update Frequency")
+                                    i.fa.fa-info(aria-hidden='true')
+                                select#datasetMetadataUpdate.custom-select.form-control(name='datasetMetadataUpdate')
+                                  option(value='Annually') How frequently will this metadata be updated?
+                                  option(value='Monthly') Monthly
+                                  option(value='Quarterly') Quarterly
+                                  option(value='Biannually') Biannually
+                                  option(value='Annually') Annually
+                        .row
+                          .col-6
+                            .form-group
+                              label.lead(for='datasetUseConstraints')
+                                | Use Constraints :
+                                span.warning *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset use constraints refer to any special use-limitations of this dataset. These often take the form of a limited-liability statement, but do not have to." title="Use Constraints")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetUseConstraints.form-control(type='text', name='datasetUseConstraints',  maxlength='87', placeholder='Does this dataset have any special use constraints?')
+                          .col-6
+                            .form-group
+                              label(for='datasetSecurityConstraints')
+                                | Security Constraints :
+                                span.warning *
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset security constraints refers to any special security limitations and/or nuance that is required. For instance, if certain fields should be hidden, if the data needs approval for consumption, contains PII or has another security-related concern or constraint, specify that here." title="Security Constraints")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetSecurityConstraints.form-control(type='text', name='datasetSecurityConstraints',  maxlength='87',placeholder='Does this dataset have any special security constraints?')
+                      h6 Optional Fields
+                      fieldset
+                        .row
+                          .col-md-12
+                            .form-group
+                              label.lead(for='datasetAdditionalInfo')
+                                | Additional Info :
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The additional info field allows you to put in any additional information concerning this dataset. These could be quality concerns, technical limitations, recommendations for consumption or whatever you'd like!" title="Additional Info")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetAdditionalInfo.form-control(type='text', name='datasetAdditionalInfo',  maxlength='495',placeholder='Does this dataset have any limitations, concerns, or other important information that we did not get?')
+                        .row
+                          .col-md-12
+                            .form-group
+                              label.lead(for='datasetLineage')
+                                | Dataset Lineage :
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The dataset lineage specifies 'where the data came from' if this data was not created by you. Common lineages are the US Census Bureau, North Carolina DOT, and the EPA." title="Lineage")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetLineage.form-control(type='text', name='datasetLineage',  maxlength='145', placeholder='If this dataset came from someone / somewhere else, where did the data originate from?')
+                        .row
+                          .col-md-12
+                            .form-group
+                              label.lead(for='datasetOpenDataURL')
+                                | Open Data URL :
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The open data URL refers to the website address of this dataset's open data page. If this dataset is not on the Open Data Portal, don't worry about this. Note that this website must contain either http:// or https// in the URL. Sites that begin with www will be flagged." title="Open Data URL")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetOpenDataURL.form-control(type='url', name='datasetOpenDataURL',  maxlength='147', placeholder="If applicable, what is this dataset's Open Data URL?")
+                        .row
+                          .col-md-12
+                            .form-group
+                              label.lead(for='datasetProgramURL')
+                                | Program URL :
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The program URL refers the website address of program that is responsbile for this data. If this dataset does not have a program associated with it, don't worry about this. Note that this website must contain either http:// or https// in the URL. Sites that begin with www will be flagged." title="Program URL")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetProgramURL.form-control(type='url', name='datasetProgramURL',  maxlength='147',placeholder="If applicable, what is this dataset's program URL?")
+                        .row
+                          .col-md-12
+                            .form-group
+                              label.lead(for='datasetRESTEndpoint')
+                                | REST Endpoint URL :
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The REST Endpoint refers to the web address of the dataset's REST endpoint. This is more-or-less specific to GIS (spatial) data. If this dataset does not have a REST endpoint, don't worry about this. Note that this website must contain either http:// or https// in the URL. Sites that begin with www will be flagged." title="REST Endpoint")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetRESTEndpoint.form-control(type='url', name='datasetRESTEndpoint',  maxlength='147', placeholder="If applicable, what is this dataset's REST endpoint?")
+                        .row
+                          .col-md-12
+                            .form-group
+                              label.lead(for='datasetRelatedDocuments')
+                                | Related Documents :
+                              .input-group
+                                .input-group-prepend
+                                  button.btn.btn-md.btn-secondary(type='button', container='body' data-toggle="popover" data-trigger="focus" data-placement='top' data-content="The related documents field allows you to specify if there are any related documents that might be useful to know about relating to this dataset." title="Related Documents")
+                                    i.fa.fa-info(aria-hidden='true')
+                                input#datasetRelatedDocuments.form-control(type='text', name='datasetRelatedDocuments',  maxlength='147', placeholder='If applicable, does this dataset have any related documents?')
+                      h6 Terms and Whatnot
+                      fieldset
+                        .row
+                          .col-md-12
+                            .form-group
+                              .c-inputs-stacked
+                                .d-inline-block.custom-control.custom-checkbox
+                                  input#censusAgreement.custom-control-input.required(type='checkbox', name='censusAgreement')
+                                  label.custom-control-label(for='censusAgreement') 
+                                    | The information submit is 
+                                    a(href='#', data-toggle='popover', title='Dataset Census Terms', data-content="By cataloging your data, you are adding this dataset to the City of Charlotte's Dataset Census. The Dataset Census is intended to be an exploratory and managerial resource for the City to understand its data footprint and its opportunities for collaboration, data-sharing and improvements in data management. By cataloging your data, you understand that your dataset's information will be discoverable by other City staff. However, the data within your dataset will remain untouched. By cataloging this dataset, you are guarenteeing that this item's information is accurate (i.e. provides an accurate and true representation of the data, its condition, status, properties and concerns) complete (i.e. fully represents the properties of the data and does not withhold any relevant or potentially relevant information pertaining to this data) and authoritative (i.e. this record is currently and will remain the single source-of-truth regarding the dataset and its properties). Additionally, by your submission, you are ensuring that this dataset belongs to your department, that the relevant data parties are aware of their duties pertaining to the data, and that the data steward, owner and/or owner will be responsive and honest to others who inquire about this dataset.") accurate, complete and authoritative
+                          .col-md-12
+                            .form-group
+                              .c-inputs-stacked
+                                .d-inline-block.custom-control.custom-checkbox
+                                  input#censusTerms.custom-control-input.required(type='checkbox', name='censusTerms')
+                                  label.custom-control-label(for='censusTerms')
+                                    | I have read, understood and agree to the terms and conditions associated with 
+                                    a(href='#', data-toggle='popover', title='Metadata Terms', data-content="If you completed your dataset's metadata completely (i.e. completed all of the fields to comply with the City's Metadata Standard), you understand that this metadata must be maintained with regularity (at least-frequent, it must be updated / reviewed annually) and that the metadata must be kept in good condition and compliant with the current Metadata Standardof the City. Datasets that exist on or are intended to exist on a Shared Production Database must comply with the metadata standard. Should a dataset be found to be inaccurate, incomplete, unauthoritative, stagnant or otherwise noncompliant with the City's Metadata Standard, it may be removed from the database. Continued noncompliance may result in additional corrective action.") cataloging my data
+                          .col-md-12
+                            .form-group
+                              .c-inputs-stacked
+                                .d-inline-block.custom-control.custom-checkbox
+                                  input#sharingTerms.custom-control-input.required(type='checkbox', name='sharingTerms')
+                                  label.custom-control-label(for='sharingTerms')
+                                    | I have read, understood and agree to the terms and conditions associated with 
+                                    a(href='#', data-toggle='popover', title='Sharing Terms', data-content="The Sharing Level (Public Access Level) of this dataset was specified during the catalog process. By specifying the appropriate sharing level, you are ensuring that this sharing level is indeed appropriate for the data in conjunction with the specified usage and security constraints. Prior to sharing, this dataset will need to be reviewed and approved by your department's Data Auditor.") sharing my data
+block bodyScripts
+  // Form wizard with step validation section end
+  script(src='/javascripts/form/jquery.min.js', type='text/javascript')
+  script(src='/javascripts/form/jquery.steps.min.js', type='text/javascript')
+  script(src='/javascripts/form/moment-with-locales.min.js', type='text/javascript')
+  script(src='/javascripts/form/jquery.validate.min.js', type='text/javascript')
+  script(src='/javascripts/form/app.min.js', type='text/javascript')
+  script(src='/javascripts/form/wizard-steps.min.js', type='text/javascript')
+  script(src='/javascripts/faq/faq-main.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-catalogconfig.js', type='application/javascript')
+
+  script.
+    var today = new Date();
+    var dd = ("0" + (today.getDate())).slice(-2);
+    var mm = ("0" + (today.getMonth() +　1)).slice(-2);
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd ;
+    $("#datasetCreationDate").attr("value", today);
+		  
+  script.
+    $(document).ready(function(){
+      $('[data-toggle="popover"]').popover();
+    });
+

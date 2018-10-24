@@ -1,0 +1,141 @@
+@import "./src/faq-main.scss";
+@import "./src/faq-modern.scss";
+@import "./src/footable.scss";
+@import "./src/wizard.scss";
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+$body-color: #2A1b3C;
+$hidden-class: none;
+$body-font: 'Josefin Sans', sans serif;
+
+
+$dark-Purple: #44318D;
+$light-Purple: #8265A7;
+$sea-Teal: #70D3D0;
+$electric-Pink: #D83F87;
+$danger-Red: #E7263B;
+$ice-Gray: #A4B3B6;
+$ice-Gray: #E2E9F1;
+$night-Purple: #2A1b3C;
+
+$theme-colors: (
+    primary : $dark-Purple,
+    secondary : $light-Purple,
+    success : $sea-Teal,
+    danger : $electric-Pink,
+    warning : $danger-Red,
+    info : $ice-Gray,
+    light: $ice-Gray,
+    dark : $night-Purple
+);
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  color: $body-color;
+  font-family: $body-font;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; 
+  line-height: 60px; 
+  background-color: #6f42c1;
+}
+
+.btn  {
+    .btn-default{
+        .dropdown-toggle{
+            display: $hidden-class;
+        }
+    }
+}
+
+.danger {
+  color: $danger-Red;}
+
+#particleContainer {
+    max-height:400px;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+#gradientOne {
+    background: -moz-linear-gradient(45deg, #D83F87 0%, #8265A7 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #D83F87), color-stop(100%, #8265A7)); /* safari4+,chrome */
+    background: -webkit-linear-gradient(45deg, #D83F87 0%, #8265A7 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(45deg, #D83F87 0%, #8265A7 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(45deg, #D83F87 0%, #8265A7 100%); /* ie10+ */
+    background: linear-gradient(45deg, #D83F87 0%, #8265A7 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8265A7', endColorstr='#D83F87',GradientType=1 ); /* ie6-9 */
+};
+
+#gradientTwo {
+    background: -moz-linear-gradient(45deg, #a6c1ee 0%, #fbc2eb 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #a6c1ee), color-stop(100%, #fbc2eb)); /* safari4+,chrome */
+    background: -webkit-linear-gradient(45deg, #a6c1ee 0%, #fbc2eb 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(45deg, #a6c1ee 0%, #fbc2eb 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(45deg, #a6c1ee 0%, #fbc2eb 100%); /* ie10+ */
+    background: linear-gradient(45deg, #a6c1ee 0%, #fbc2eb 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbc2eb', endColorstr='#a6c1ee',GradientType=1 ); /* ie6-9 */
+};
+
+#gradientThree {
+    background: -moz-linear-gradient(45deg, #a6c0fe 0%, #f68084 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #a6c0fe), color-stop(100%, #f68084)); /* safari4+,chrome */
+    background: -webkit-linear-gradient(45deg, #a6c0fe 0%, #f68084 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(45deg, #a6c0fe 0%, #f68084 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(45deg, #a6c0fe 0%, #f68084 100%); /* ie10+ */
+    background: linear-gradient(45deg, #a6c0fe 0%, #f68084 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f68084', endColorstr='#a6c0fe',GradientType=1 ); /* ie6-9 */
+};
+
+#gradient-horizontal {
+  --color-stop-1: #a770ef;
+  --color-stop-2: #cf8bf3;
+  --color-stop-3: #fdb99b;
+}
+
+.sw-theme-arrows {
+    border-color: $ice-Gray;
+    color: $night-Purple;
+    background: $ice-Gray;
+}
+.cardBox {
+  transition: transform .5s;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+    content: '';
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &:hover,
+  &:focus {
+    transform: scale3d(1.006, 1.006, 1);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+

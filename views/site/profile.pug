@@ -1,0 +1,310 @@
+extends layout
+
+block content
+  .container-fluid.px-0.mb-2
+    .jumbotron.p-4
+      .row
+        .col-8
+          h1.display-2 Hello
+          h3.display-4 Great to See You Again!
+        #particleContainer.col-4
+      hr.my-4
+      p.lead
+        | Your profile page is the place where you can see the datasets that you can modify.
+      p
+        | Every person's Profile page is unique to them. Thank you for keeping your metadata
+        | up to date!
+  .container.bg-light
+    .row.mx-4.my-2(style='justify-content:center;')
+      h3.display-4 
+        | Take a Gander at Your Data!
+    .row
+      .col-4
+        .card(style='width: 18rem;')
+          img.card-img-top.p-2(src='/images/icons/user.svg', alt='Card image cap', style='width:60%;margin:auto;')
+          .card-body
+            h5.card-title #{user}
+            p.card-text A True Data Hero
+          ul.list-group.list-group-flush
+            li.list-group-item
+              | Your Datasets: 
+              #yourDatasets.span
+                | 			  
+            li.list-group-item
+              | Datasets Pending Approvals: 
+              #pendingDatasets.span
+                | 	
+            li.list-group-item
+              | Metadata Compliant Datasets: 
+              #compliantDatasets.span
+                | 	
+          .card-body
+            a.card-link(href='/learn') Learn
+            a.card-link(href='/catalog') Share
+            a.card-link(href='/expore') Do
+      .col-8
+        table#editTable.table.table-striped.table-hover.table-sm(data-paging="true" data-sorting="true" )
+  #detailsModal.modal.fade(tabindex='-1', role='dialog')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          h4.modal-title Edit This Dataset's Metadata
+        .modal-body
+          form#editForm(action='../api/metadata/datasets/update', method='post', class='needs-validation', novalidate)
+            .form-row
+              .form-group.col-md-6
+                label(for='datasetID') ID
+                input#datasetID.form-control(name='datasetID',type='text', readonly="readonly")
+              .form-group.col-md-6
+                label(for='datasetName') Name
+                input#datasetName.form-control(name='datasetName', type='text', readonly="readonly")
+            .form-row
+              .form-group.col-md-12
+                label(for='datasetSummary') Summary
+                input#datasetSummary.form-control(name='datasetSummary', type='text',  maxlength='147',required='')
+                .valid-feedback Right On! 
+                .invalid-feedback Whoops! This field is actually an important one. 
+            .form-row
+              .form-group.col-md-6
+                label(for='datasetDepartment') Department
+                input#datasetDepartment.form-control(name='datasetDepartment', type='text', readonly="readonly")
+              .form-group.col-md-6
+                label(for='datasetTags') Tags
+                input#datasetTags.form-control(name='datasetTags', type='text', required='')
+                .valid-feedback Nice Tags! The more you provide, the better in fact!
+                .invalid-feedback Bad News Bears. You forgot your tags. 
+            .form-row
+              .form-group.col-md-6
+                label(for='datasetSteward') Data Steward
+                input#datasetSteward.form-control(name='datasetSteward', type='text',  maxlength='42', required='')
+                .valid-feedback Great stewardship. One of the best I've seen.
+                .invalid-feedback Slow down there partner! We need a steward!
+              .form-group.col-md-6
+                label(for='datasetStewardEmail') Data Steward Email
+                input#datasetStewardEmail.form-control(name='datasetStewardEmail',  maxlength='42', type='email', required='')
+                .valid-feedback Great email. I'll almost never email you.
+                .invalid-feedback You sure about that? We need a valid email, friend!
+            .form-row
+              .form-group.col-md-6
+                label(for='datasetOwner') Data Owner
+                input#datasetOwner.form-control(name='datasetOwner', type='text',  maxlength='42', required='')
+                .valid-feedback Nice. You are killin' it.
+                .invalid-feedback Psssssshhh, you can't omit the owner!
+              .form-group.col-md-6
+                label(for='datasetOwnerEmail') Data Owner Email
+                input#datasetOwnerEmail.form-control(name='datasetOwnerEmail', type='email',  maxlength='42', required='')
+            .form-row
+              .form-group.col-md-6
+                label(for='datasetTypeForm') Data Type
+                select#datasetTypeForm.form-control(name='datasetTypeForm', required='')
+                  option(value='') Select the appropriate data type
+                  option(value='Tabular Data') Tabular Data
+                  option(value='Unstructured Data') Unstructured Data
+                  option(value='Images') Images
+                  option(value='Files') Files
+                  option(value='Other') Other
+                .valid-feedback Thanks for sharing this info! 
+                .invalid-feedback You sure you don't wanna share this info?
+              .form-group.col-md-6
+                label(for='datasetSource') Data Source
+                input#datasetSource.form-control(name='datasetSource', type='text', required='')
+                .valid-feedback Great data-source. One of my top-ten, for sure.
+                .invalid-feedback *Screeeeech* You gotta let us know where this data is!
+            .form-row
+              .form-group.col-md-6
+                label(for='datasetStatusForm') Data Status
+                select#datasetStatusForm.form-control(name='datasetStatusForm', required='')
+                  option(value='Completed') What is the status of this data?
+                  option(value='Under Development') Under Development
+                  option(value='Completed') Completed
+                  option(value='Historical') Historical
+                .valid-feedback That's some solid data.
+                .invalid-feedback Come on! You have to tell us this info!
+              .form-group.col-md-6
+                label(for='datasetTopicForm') Data Category
+                select#datasetTopicForm.form-control(name='datasetTopicForm', required='')
+                  option(value='City Infrastructure') Which category most appropriately categorizes this dataset?
+                  option(value='City Infrastructure') City Infrastructure
+                  option(value='City Management and Ethics') City Management and Ethics
+                  option(value='City Projects') City Projects
+                  option(value='Culture and Recreation') Culture and Recreation
+                  option(value='Economy and Community') Economy and Community
+                  option(value='Energy and the Environment') Energy and the Environment
+                  option(value='Financial Information') Financial Information
+                  option(value='Geographic Locations and Boundaries') Geographic Locations and Boundaries
+                  option(value='Health and Social Services') Health and Social Services
+                  option(value='Housing and Buildings') Housing and Buildings
+                  option(value='Public Safety') Public Safety
+                  option(value='Transportation') Transportation
+                  .valid-feedback Dope. That's a dope category.
+                  .invalid-feedback This is actually rather important! We reallllly recommend you fill it out.
+            .form-row
+              .form-group.col-md-6
+                label(for='datasetRelatedDocs') Related Documents
+                input#datasetRelatedDocs.form-control(name='datasetRelatedDocs',  maxlength='147', type='text')
+              .form-group.col-md-6
+                label(for='datasetLineage') Lineage
+                input#datasetLineage.form-control(name='datasetLineage', maxlength='147', type='text')
+            .form-row
+              .form-group.col-md-6
+                label(for='datasetOpenDataURL') Open Data URL
+                input#datasetOpenDataURL.form-control(name='datasetOpenDataURL', maxlength='147', type='text')
+              .form-group.col-md-6
+                label(for='datasetRESTEndpoint') REST Endpoint
+                input#datasetRESTEndpoint.form-control(name='datasetRESTEndpoint', maxlength='147', type='text')
+            .form-group
+              label(for='datasetNotes') Additional Info
+              input#datasetNotes.form-control(name='datasetNotes', type='text', maxlength='497', placeholder='Notes, quality concerns, etc.')
+            .form-group
+              label(for='datasetDescription') Description
+              input#datasetDescription.form-control(name='datasetDescription', type='text',maxlength='997', placeholder='Detailed description of your dataset')
+            .form-row
+              .form-group.col-md-12
+                label(for='datasetUseConstraints') Use Constraints
+                input#datasetUseConstraints.form-control(name='datasetUseConstraints', maxlength='87', type='text', required='')
+                .valid-feedback Solid use constraints. That will help everyone out.
+                .invalid-feedback Oh really? No use constaints? If that is the case, just type 'NA' or something. We'er just being safe :)
+              .form-group.col-md-12
+                label(for='datasetSecurity') Security Constraints
+                input#datasetSecurity.form-control(name='datasetSecurity', type='text', maxlength='87', required='')
+                .valid-feedback Security is super important. Good call here
+                .invalid-feedback You sure there's no security constraints? If so, type 'NA' or something. Safety first!
+            .form-row
+              .form-group.col-md-6
+                label(for='datasetSharingLevelForm') Sharing Level
+                select#datasetSharingLevelForm.form-control(name='datasetSharingLevelForm', required='')
+                  option(value='') Select the appropriate sharing level
+                  option(value='Restricted') Restricted
+                  option(value='Departmental') Departmental
+                  option(value='Internal') Internal
+                  option(value='Open') Open
+                .valid-feedback Solid sharing preference, friend.
+                .invalid-feedback This one is so important! Why would you skip it! 
+              .form-group.col-md-6
+            .form-row
+              p.lead
+                | Note: Every time you edit your record, you will need to check the below boxes if applicable.
+              p
+                | Otherwise, the records will revert back to 'Metadata Not Approved' and 'Sharing Level Incorrect.'
+            .form-row
+              .form-group.col-md-12
+                .custom-control.custom-checkbox.custom-control-inline
+                  input#datasetSharingApproval.custom-control-input(type='checkbox', name='datasetSharingApproval', value=1)
+                  label.custom-control-label(for='datasetSharingApproval') This data's sharing level is appropriate
+                .custom-control.custom-checkbox.custom-control-inline
+                  input#datasetValidated.custom-control-input(type='checkbox', name='datasetValidated', value=1)
+                  label.custom-control-label(for='datasetValidated') This dataset's metadata is accurate
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+              button#submitEditButton.btn.btn-primary(type='submit' formmethod='POST') Submit Changes
+  #successModal.modal.fade(tabindex='-1', role='dialog')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header(style="justify-content:center;")
+          h3.modal-title Huzzah! You just updated your record!
+        .modal-body(style="justify-content:center;")
+          p.lead(style="text-align:center;")
+            | Thanks for taking care of your data! You are a rock-star.
+          img(src='/images/congrats.gif', alt='Jake from Adventure Time', style='width:100%;margin:auto;')
+        .modal-footer
+          button.btn.btn-default(type='button', data-dismiss='modal') Now Go Continue Being Great!
+  #errorModal.modal.fade(tabindex='-1', role='dialog')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header(style="justify-content:center;")
+          h3.modal-title Bad News. Something went wrong.
+        .modal-body(style="justify-content:center;")
+          p.lead(style="text-align:center;")
+            | Your dataset did not get updated, so try and make the update again!
+          img(src='/images/error.gif', alt='Cat rage quitting', style='width:100%;margin:auto;')
+        .modal-footer
+          button.btn.btn-default(type='button', data-dismiss='modal') Let's Just Put This Behind Us...
+        
+block bodyScripts
+  script(src='/javascripts/core/jquery.min.js', type='application/javascript')
+  script(src='/javascripts/core/popper.min.js', type='application/javascript')
+  script(src='/javascripts/core/bootstrap.min.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-main.js', type='application/javascript')
+  script(src='/javascripts/faq/faq-profileconfig.js', type='application/javascript')
+  script(src='/javascripts/footable/footable.js', type='application/javascript')
+  script(src='/javascripts/footable/footable.paginate.js', type='application/javascript')
+  script.
+    jQuery(function($){
+      $('.table').footable({
+        showToggle: false,
+        filtering: {
+          enabled: true,
+          placeholder:"Search for your datasets"
+        },
+        paging: {
+          enabled : true
+        },
+        columns: [
+        {name : "idMasterRecord", title : "ID"}
+        ,{name : 'title', title : "Title", style: {maxWidth:150, overflow:"hidden", textOverflow:"ellipsis", wordBreak:"keep-all", whiteSpace:"nowrap"}}
+        ,{name : "tags", title : "Tags", breakpoints : "xs sm md lg xl"}
+        ,{name : "summary", title : "Summary", breakpoints : "xs sm md lg xl"}
+        ,{name : "department", title : "Department", breakpoints : "xs sm md lg xl"}
+        ,{name : "useConstraints", title : "Use Constraints", breakpoints : "xs sm md lg xl"}
+        ,{name : "topic", title : "Topic", breakpoints : "xs sm md lg xl"}
+        ,{name : "datasetType", title : "Data Type", breakpoints : "xs sm md lg xl"}
+        ,{name : "creationDate", title : "Creation Date", visible : false}
+        ,{name : "lastUpdated", title : "Last Updated", visible : false}
+        ,{name : "dataSteward", title : "Data Steward", breakpoints : "xs sm md lg xl"}
+        ,{name : "dataStewardEmail", title : "Data Steward Email", breakpoints : "xs sm md lg xl"}
+        ,{name : "dataOwner", title : "Data Owner", breakpoints : "xs sm md lg xl"}
+        ,{name : "dataOwnerEmail", title : "Data Owner Email", breakpoints : "xs sm md lg xl"}
+        ,{name : "publicAccessLevel", title : "Public Access Level", breakpoints : "xs sm md lg xl"}
+        ,{name : "metadataUpdateFrequency", title : "Metadata Update Frequency", breakpoints : "xs sm md lg xl"}
+        ,{name : "dataStatus", title : "Data Status", breakpoints : "xs sm md lg xl"}
+        ,{name : "notes", title : "Notes", breakpoints : "xs sm md lg xl"}
+        ,{name : "updateFrequencyId", title : "Update Frequency", breakpoints : "xs sm md lg xl"}
+        ,{name : "securityConstraints", title : "Security Constraints", breakpoints : "xs sm md lg xl"}
+        ,{name : "lineage", title : "Lineage", breakpoints : "xs sm md lg xl"}
+        ,{name : "permalink", title : "Permalink", breakpoints : "xs sm md lg xl"}
+        ,{name : "url", title : "URL", breakpoints : "xs sm md lg xl"}
+        ,{name : "endpoint", title : "Endpoint", breakpoints : "xs sm md lg xl"}
+        ,{name : "downloadURL", title : "Open Data URL", breakpoints : "xs sm md lg xl"}
+        ,{name : "programLink", title : "Program Link", breakpoints : "xs sm md lg xl"}
+        ,{name : "relatedDocument", title : "Related Documents", breakpoints : "xs sm md lg xl"}
+        ,{name : "shareStatusId", title : "Share Status", breakpoints : "xs sm md lg xl"}
+        ,{name : "datasetSource", title : "Data Source", breakpoints : "xs sm md lg xl"}
+        ,{name : "metadataValidated", title : "Metadata Validated"}
+        ,{name : "sharingApproval", title : "Approved for Sharing"}
+        ,{name : "submitUser", title : "Submit User", "visible":false}
+        ,{name : "submittedBy", title : "Submit By"}
+        ,{name : "submitDate", title : "Submital Date",breakpoints : "xs sm md lg xl"}
+        ,{name : "updatedBy", title : "Updated By", breakpoints : "xs sm md lg xl"}
+        ,{name: "updateDate", title : "Last Updated", breakpoints : "xs sm md lg xl"}
+      ],
+      rows: $.get('/api/metadata/myData')    
+      });
+    });
+	
+  script.
+    $('[data-page-size]').on('click', function(e){
+      e.preventDefault();
+      var newSize = $(this).data('pageSize');
+      fooTable.get('#page-size-example').pageSize(newSize);
+    });
+	
+  script.
+    $(document).ready(function() {
+      if(window.location.href.indexOf('#successModal') != -1) {
+        $('#successModal').modal('show');
+      }
+      if(window.location.href.indexOf('#errorModal') != -1) {
+        $('#errorModal').modal('show');
+      }
+    });
+	
+  script.
+    $("#submitEditButton").click(function() {
+      // Fetch form to apply custom Bootstrap validation
+      var form = $("#editForm")
+      if (form[0].checkValidity() === false) {
+        event.preventDefault()
+        event.stopPropagation()
+      }   
+      form.addClass('was-validated');    
+    });
